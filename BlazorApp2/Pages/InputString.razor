@@ -1,0 +1,39 @@
+﻿@using BlazorApp2.Data
+@using System.Diagnostics.Eventing.Reader
+
+<div class="form-group">
+    <label>@InputLabel</label>
+    <InputSelect Value="Input">
+        <option>1</option>
+    </InputSelect>
+    <!--<InputSelect Value="@Input"
+                 ValueChanged="@((string s)=>HandleOnInputChanged(s))"
+                 Class="form-control">
+        <option value="">--Select a Value--</option>-->
+        @*@if (Items == null)
+        {
+            <option value="">Loading...</option>
+        }
+
+        else
+        {
+            foreach (var item in Items)
+            {
+                <option value="@item">@item</option>
+            }
+        }*@
+    <!--</InputSelect>-->
+</div>
+
+@code {
+
+    [Parameter] public string Input { get; set; }
+    [Parameter] public string InputLabel { get; set; }
+    [Parameter] public string[] Items { get; set; }
+    [Parameter] public EventCallback<string> OnColorChanged { get; set; }
+
+    void HandleOnInputChanged(string selectedValue)
+    {
+        OnColorChanged.InvokeAsync(selectedValue);
+    }
+}
